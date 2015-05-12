@@ -22,7 +22,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    serialportreader.cpp
+    serialportreader.cpp \
+    myudp.cpp
 
 HEADERS += \
-    serialportreader.h
+    serialportreader.h \
+    myudp.h

@@ -59,9 +59,11 @@ private slots:
     void handleReadyRead();
     void handleError(QSerialPort::SerialPortError error);
 
+signals:
+    void readySend(const QByteArray &);
+
 private:
-    void  dataDetect(QByteArray &);
-    void udpSender(QByteArray &);
+    void dataDetect(QByteArray &);
     QByteArray udpSendTemp;
     QSerialPort *m_serialPort;
     QByteArray  m_readData;

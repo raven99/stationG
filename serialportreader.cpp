@@ -72,7 +72,8 @@ void SerialPortReader::dataDetect(QByteArray & serialTemp)
                     if( length > 50)//each udp package should contain more than 50 bytes
                     {
                         udpSendTemp = serialTemp.mid( serialTemp.indexOf('~'),  length);
-                        udpSender(udpSendTemp);
+                        //udpSender(udpSendTemp);
+                        emit readySend(udpSendTemp);
                         serialTemp.remove(0, serialTemp.indexOf('~') + length);
                         m_standardOutput << QObject::tr("A package has just arrived and sended\n");
                     }
@@ -84,11 +85,6 @@ void SerialPortReader::dataDetect(QByteArray & serialTemp)
                 }
             }
     }
-}
-
-void SerialPortReader::udpSender(QByteArray &sendContext)
-{
-    udpSocket.writeDatagram(sendContext, QHostAddress::LocalHost,5824);
 }
 
 void SerialPortReader::handleError(QSerialPort::SerialPortError serialPortError)
